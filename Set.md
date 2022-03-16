@@ -109,6 +109,91 @@ class Person{
 ### example 
 
 ```java
+public class Q1 {
+    public static void main(String[]args){
+        TreeSet<Person> a = new TreeSet<>();
+        boolean b1 =a.add(new Person(100));
+        boolean b2 =a.add(new Person(99));
+        boolean b3 =a.add(new Person(96));
+        boolean b4 =a.add(new Person(98));
+
+        for (Person unit:a){
+            //从小到大排列
+            System.out.println(unit.age);
+        }
+    }
+
+
+}
+
+public class Person implements Comparable{
+    int age;
+    String name;
+
+    Person(int age,String name){
+        this.age=age;
+        this.name=name;
+
+    }
+    Person(int age){
+        this.age=age;
+
+
+    }
+
+
+    public boolean equals(Object o){
+        boolean eval;
+        Person p = (Person) o;
+        if (this.age==p.age||this.name==p.name){
+            eval = true;
+        } else{
+            eval=false;
+        }
+        return eval;
+    }
+    public String  getName(){
+      return this.name;
+    }
+    public int compareTo(Object o){
+        Person p = (Person) o;
+
+        return this.age-p.age;//只要比0大说明就是大的,放在右边
+
+    }
+
+
+}
+
+```
+
+### Comparator
+
+``` java
+public class Q1 {
+    public static void main(String[]args){
+        TreeSet<Person> a = new TreeSet<>(new B());
+        boolean b1 =a.add(new Person(100));
+        boolean b2 =a.add(new Person(99));
+        boolean b3 =a.add(new Person(96));
+        boolean b4 =a.add(new Person(98));
+
+        for (Person unit:a){
+            System.out.println(unit.age);
+        }
+    }
+
+
+}
+
+class B implements Comparator {
+    public int compare(Object arg0, Object arg1){
+        Person p =(Person) arg0;
+        Person p1 =(Person) arg1;
+        return p.age-p1.age;
+
+    }
+}
 
 ```
 
